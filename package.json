@@ -1,0 +1,17 @@
+{
+    "name": "test_environment",
+    "version": "1.0.0",
+    "description": "Created for coding challenge",
+    "main": "index.js",
+    "scripts": {
+        "test": "cypress run",
+        "e2e:record:parallel": "cypress run --record --parallel --browser chrome"
+    },
+    "devDependencies": {
+        "cypress": "^12.17.3",
+        "cypress-wait-until": "^1.6.0"
+    },
+    "dependencies": {
+        "npm": "^8.11.0"
+    }
+}
