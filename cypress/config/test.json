@@ -1,0 +1,35 @@
+{
+    "projectId": "ysomiq",
+    "specPattern": "**/**.cy.js",
+    "excludeSpecPattern": "**/**.ignored.cy.js",
+    "viewportWidth": 1400,
+    "viewportHeight": 1200,
+    "video": true,
+    "chromeWebSecurity": false,
+    "retries": {
+        "runMode": 1,
+        "openMode": 0
+    },
+    "env": {
+        "ENVIRONMENT": "test",
+        "baseUrl": "https://restful-booker.herokuapp.com",
+        "PROTOCOL": "https://"
+    },
+    "compilerOptions": {
+        "types": [
+            "cypress",
+            "cypress-xpath"
+        ]
+    },
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quiet": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
+}
