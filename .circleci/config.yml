@@ -66,4 +66,4 @@ workflows:
               only:
                 - main
           requires:
-            - 2 machines
+            - 2 machines using Chrome
