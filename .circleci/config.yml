@@ -11,9 +11,8 @@ workflows:
           name: "testrun"
           package-manager: yarn
           install-browsers: true
-          start-command: "yarn start"
           cypress-command: "yarn e2e:record:parallel --browser chrome --record --key 3707ee86-a1d2-451e-804d-d1c8c2e68903 --parallel --group 2x-chrome on CircleCI"
           parallelism: 2
           post-steps:
             - store_test_results:
-                path: reports/mocha
+                path: cypress/reports/mocha
