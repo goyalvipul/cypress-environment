@@ -33,4 +33,3 @@ Cypress.on('window:before:load', (win) => {
       throw new Error(msg);
     });
 });
-

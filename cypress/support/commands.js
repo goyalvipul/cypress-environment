@@ -26,14 +26,25 @@
 
 
 
+
+Cypress.Commands.add('query', (url, queryType, body = '')=>{
+  cy.request({
+    method: queryType,
+    url,
+    headers: { 
+        "Accept-Language": "en-us",
+        "Content-Type": "application/json" },
+    body
+}).then(response => {
+    cy.wrap(response)
+})
+  })
+
+
 Cypress.Commands.add(
-    'query',
-    ({ tenantName }, query, values = '', failOnStatusCode = true) => {
-      cy.getTenant(tenantName).then((tenantData) => {
-        const { subdomain } = tenantData;
-        const baseUrl = protocol + subdomain + domain + port;
-        const adminPath = `${baseUrl}/api/graphql`;
-  
+    'queryGraphQL',
+    (url, query, values = '', failOnStatusCode = true) => {
+        const adminPath = `${url}/api/graphql`;
         const options = {
           url: adminPath,
           method: 'POST',
@@ -51,11 +62,6 @@ Cypress.Commands.add(
         };
         cy.request(options).then((response) => {
           if (JSON.stringify(response.body).includes('"userErrors":[{"code":"')) {
-            cy.addContext('~~~~~~~~~~ REQUEST FAILURE ~~~~~~~~~~');
-            cy.addContext(`Request Query: ${query}`);
-            cy.addContext(`Request Variables: ${JSON.stringify(values)}`);
-            cy.addContext(`Request Response: ${JSON.stringify(response.body)}`);
-            cy.addContext('~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~');
             cy.log('~~~~~~~~~~ REQUEST FAILURE ~~~~~~~~~~');
             cy.log(`Request Query: ${query}`);
             cy.log(`Request Variables: ${JSON.stringify(values)}`);
@@ -68,10 +74,6 @@ Cypress.Commands.add(
           cy.addContext('~~~~~~~~~~ ~~~~~~~~~~ ~~~~~~~~~~');
           cy.wrap(JSON.stringify(response.body));
         });
-      });
     }
   );
-  Cypress.Commands.add('addContext', (context) => {
-    cy.once('test:after:run', (test) => addContext({ test }, context));
-  });
-
+ 

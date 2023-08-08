@@ -1,4 +1,8 @@
 
 node_modules/
+reports/
+cypress/videos/
+
 
 cypress/.DS_Store
+.DS_Store

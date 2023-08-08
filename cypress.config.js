@@ -18,6 +18,13 @@ module.exports = defineConfig({
       const file = config.env.configFile || 'test';
       config.defaultCommandTimeout = 10000
 
+      on('task', {
+        log (message) {
+          console.log(message)
+          return null
+        }
+      })
+
       return getConfigurationByFile(file);
     },
   },
