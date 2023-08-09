@@ -15,4 +15,4 @@ workflows:
           parallelism: 2
           post-steps:
             - store_test_results:
-                path: cypress/reports/mocha
+                path: /cypress/reports/mocha
